@@ -1,0 +1,510 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  --radius: 0.625rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* ---------- Subtle custom scrollbars ---------- */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in oklab, var(--muted-foreground) 30%, transparent) transparent;
+}
+::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: color-mix(in oklab, var(--muted-foreground) 28%, transparent);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in oklab, var(--muted-foreground) 45%, transparent);
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+/* ---------- Markdown preview (note preview pane) ---------- */
+.markdown-body {
+  @apply text-[15px] leading-7 text-foreground;
+  overflow-wrap: break-word;
+}
+.markdown-body > :first-child {
+  margin-top: 0;
+}
+.markdown-body > :last-child {
+  margin-bottom: 0;
+}
+.markdown-body h1 {
+  @apply mb-3 mt-6 text-2xl font-bold tracking-tight;
+}
+.markdown-body h2 {
+  @apply mb-3 mt-6 text-xl font-semibold tracking-tight;
+}
+.markdown-body h3 {
+  @apply mb-2 mt-5 text-base font-semibold;
+}
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  @apply mb-2 mt-4 text-sm font-semibold;
+}
+.markdown-body p {
+  @apply my-3;
+}
+.markdown-body ul {
+  @apply my-3 list-disc space-y-1 pl-6;
+}
+.markdown-body ol {
+  @apply my-3 list-decimal space-y-1 pl-6;
+}
+.markdown-body li > ul,
+.markdown-body li > ol {
+  @apply my-1;
+}
+.markdown-body input[type='checkbox'] {
+  @apply mr-1.5 h-3.5 w-3.5 translate-y-0.5 accent-emerald-600;
+}
+.markdown-body blockquote {
+  @apply my-4 rounded-r-md border-l-4 border-emerald-600/40 bg-muted/50 px-4 py-1.5;
+}
+.markdown-body code {
+  @apply rounded bg-muted px-1.5 py-0.5 font-mono text-[13px];
+}
+.markdown-body pre {
+  @apply my-4 overflow-x-auto rounded-lg bg-muted p-4;
+}
+.markdown-body pre code {
+  @apply bg-transparent p-0;
+}
+.markdown-body table {
+  @apply my-4 w-full border-collapse overflow-hidden text-sm;
+}
+.markdown-body th {
+  @apply border bg-muted/70 px-3 py-2 text-left font-semibold;
+}
+.markdown-body td {
+  @apply border px-3 py-2 align-top;
+}
+.markdown-body hr {
+  @apply my-6;
+}
+.markdown-body a {
+  @apply text-primary underline underline-offset-2;
+}
+.markdown-body img {
+  @apply my-4 max-w-full rounded-lg;
+}
+.markdown-body .katex {
+  font-size: 1.05em;
+}
+.markdown-body .katex-display {
+  @apply my-4 overflow-x-auto overflow-y-hidden py-1;
+}
+.markdown-body .katex-error {
+  @apply text-xs font-mono;
+  color: var(--destructive);
+}
+
+/* ---------- WYSIWYG block editor ---------- */
+.block-inline {
+  @apply text-[15px] leading-7;
+  overflow-wrap: break-word;
+}
+.block-inline code {
+  @apply rounded bg-muted px-1.5 py-0.5 font-mono text-[13px];
+}
+.block-inline a {
+  @apply text-primary underline underline-offset-2;
+}
+.block-inline .katex {
+  font-size: 1.05em;
+}
+.block-inline .katex-error {
+  @apply text-xs font-mono;
+  color: var(--destructive);
+}
+.block-math .katex-display {
+  margin: 0;
+}
+.block-math .katex-display > .katex {
+  white-space: normal;
+}
+.block-editor textarea::placeholder {
+  opacity: 1;
+}
+
+/* ---------- Print pipeline (dialog preview + @media print share these) ---------- */
+
+/* on screen the print root is hidden; while printing it is the only visible node */
+#print-root {
+  display: none;
+}
+
+@media print {
+  body > *:not(#print-root) {
+    display: none !important;
+  }
+  #print-root {
+    display: block !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  html,
+  body {
+    height: auto !important;
+    overflow: visible !important;
+    background: #fff !important;
+  }
+  /* mirror the preview's pagination rules in the real print engine */
+  #print-root .print-content > * {
+    break-inside: avoid-page;
+  }
+  #print-root .print-content h1,
+  #print-root .print-content h2,
+  #print-root .print-content h3,
+  #print-root .print-content h4 {
+    break-after: avoid-page;
+  }
+}
+
+/* shared flags — applied to #print-root and to the preview sheet stack */
+.print-bw {
+  filter: grayscale(1);
+}
+.print-no-bg .print-content pre {
+  background: transparent !important;
+}
+.print-no-bg .print-content code {
+  background: transparent !important;
+}
+.print-no-bg .print-content blockquote {
+  background: transparent !important;
+  border-left-color: #9ca3af;
+}
+.print-no-bg .print-content th {
+  background: transparent !important;
+}
+
+/*
+ * Printed page typography — em-based so everything scales with the
+ * "Text size" setting (base font-size set in pt via inline style).
+ * These rules come after .markdown-body so they win on shared properties.
+ */
+.print-content {
+  line-height: 1.7;
+  color: #111827;
+  overflow-wrap: break-word;
+}
+.print-content h1 {
+  font-size: 1.8em;
+  font-weight: 700;
+  margin: 1.1em 0 0.45em;
+  letter-spacing: -0.015em;
+}
+.print-content h2 {
+  font-size: 1.45em;
+  font-weight: 700;
+  margin: 1em 0 0.4em;
+}
+.print-content h3 {
+  font-size: 1.22em;
+  font-weight: 600;
+  margin: 0.95em 0 0.35em;
+}
+.print-content h4,
+.print-content h5,
+.print-content h6 {
+  font-size: 1.05em;
+  font-weight: 600;
+  margin: 0.9em 0 0.3em;
+}
+.print-content p {
+  margin: 0.65em 0;
+}
+.print-content ul,
+.print-content ol {
+  margin: 0.65em 0;
+  padding-left: 1.7em;
+}
+.print-content ul {
+  list-style: disc;
+}
+.print-content ol {
+  list-style: decimal;
+}
+.print-content li {
+  margin: 0.28em 0;
+}
+.print-content li > ul,
+.print-content li > ol {
+  margin: 0.28em 0;
+}
+.print-content input[type='checkbox'] {
+  width: 0.95em;
+  height: 0.95em;
+  margin-right: 0.45em;
+  accent-color: #10b981;
+  vertical-align: -0.1em;
+}
+.print-content blockquote {
+  margin: 0.9em 0;
+  padding: 0.1em 1em;
+  border-left: 3px solid #10b981;
+  background: #f3f4f6;
+  border-radius: 0 6px 6px 0;
+}
+.print-content code {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.88em;
+  background: #f3f4f6;
+  padding: 0.12em 0.38em;
+  border-radius: 4px;
+}
+.print-content pre {
+  margin: 0.9em 0;
+  padding: 0.85em 1em;
+  background: #f3f4f6;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.print-content pre code {
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+}
+.print-content pre,
+.print-content pre code {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.print-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.9em 0;
+  font-size: 0.92em;
+}
+.print-content th,
+.print-content td {
+  border: 1px solid #d1d5db;
+  padding: 0.45em 0.7em;
+  text-align: left;
+  vertical-align: top;
+}
+.print-content th {
+  background: #f3f4f6;
+  font-weight: 600;
+}
+.print-content hr {
+  border: 0;
+  border-top: 1px solid #d1d5db;
+  margin: 1.3em 0;
+}
+.print-content a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.print-content img {
+  max-width: 100%;
+}
+.print-content .katex {
+  font-size: 1.05em;
+}
+.print-content .katex-display {
+  margin: 0.9em 0;
+  text-align: center;
+}
+.print-content .katex-display > .katex {
+  white-space: normal;
+}
+.print-content .katex-error {
+  color: #dc2626;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.85em;
+}
+
+/* title block printed above the note on page 1 */
+.print-title-block {
+  margin: 0 0 1.5em;
+  padding-bottom: 1.1em;
+  border-bottom: 1px solid #e5e7eb;
+}
+.print-title-breadcrumb {
+  font-size: 0.78em;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #6b7280;
+  margin-bottom: 0.55em;
+}
+.print-dot {
+  display: inline-block;
+  width: 0.55em;
+  height: 0.55em;
+  border-radius: 999px;
+  margin-right: 0.45em;
+}
+.print-title-text {
+  font-size: 1.9em;
+  font-weight: 700;
+  line-height: 1.22;
+  letter-spacing: -0.02em;
+  color: #111827;
+  margin: 0 0 0.45em;
+}
+.print-title-meta {
+  font-size: 0.8em;
+  color: #6b7280;
+}
+
+/* hidden offscreen container used to measure page breaks at true page width */
+.print-measure {
+  position: absolute;
+  left: -10000px;
+  top: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* paper sheets in the print dialog preview */
+.print-sheet {
+  background: #fff;
+  box-shadow:
+    0 1px 3px rgb(0 0 0 / 16%),
+    0 0 0 1px rgb(0 0 0 / 6%);
+}
+.print-sheet-page {
+  position: relative;
+  background: #fff;
+}
+.print-sheet-foot {
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: #9ca3af;
+  font-size: 10.5px;
+  letter-spacing: 0.02em;
+}
